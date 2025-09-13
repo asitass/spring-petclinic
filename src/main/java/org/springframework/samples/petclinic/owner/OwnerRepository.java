@@ -25,11 +25,39 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- * Repository class for <code>Owner</code> domain objects. All method names are compliant
- * with Spring Data naming conventions so this interface can easily be extended for Spring
- * Data. See:
- * https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation
- *
+ * OwnerRepository - 宠物主人数据访问接口
+ * 
+ * 1. 接口作用和职责：
+ *    - 提供 Owner 实体的数据访问操作
+ *    - 继承 JpaRepository，获得基本的CRUD操作
+ *    - 定义自定义查询方法
+ *    - 支持分页查询功能
+ * 
+ * 2. Spring Data JPA 特性：
+ *    - 继承 JpaRepository<Owner, Integer>：获得完整的CRUD操作
+ *    - 方法命名约定：Spring Data 自动实现查询方法
+ *    - 分页支持：返回 Page<Owner> 支持分页
+ *    - 查询方法：findByLastNameStartingWith 按姓氏前缀查找
+ * 
+ * 3. 主要方法：
+ *    - findByLastNameStartingWith：按姓氏前缀查找主人（支持分页）
+ *    - findById：根据ID查找主人（返回Optional）
+ *    - save：保存主人信息
+ *    - deleteById：删除主人
+ *    - findAll：查找所有主人
+ * 
+ * 4. 查询方法命名规则：
+ *    - findBy + 属性名：按属性查找
+ *    - StartingWith：前缀匹配
+ *    - Pageable：分页参数
+ *    - Optional：可能为空的结果
+ * 
+ * 5. 使用场景：
+ *    - 主人注册时检查重复
+ *    - 按姓氏搜索主人
+ *    - 分页显示主人列表
+ *    - 主人信息的增删改查
+ * 
  * @author Ken Krebs
  * @author Juergen Hoeller
  * @author Sam Brannen
